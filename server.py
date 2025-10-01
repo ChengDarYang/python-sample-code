@@ -5,9 +5,9 @@ from requests_oauthlib import OAuth2Session
 app = Flask(__name__)
 
 # Get this information by registering your app at https://developer.id.me
-client_id              = 'YOUR_CLIENT_ID'
-client_secret          = 'YOUR_CLIENT_SECRET'
-redirect_uri           = 'YOUR_REDIRECT_URI'
+client_id              = '28bf5c72de76f94a5fb1d9454e347d4e'
+client_secret          = 'Y3e9f2e9716dba6ec74a2e42e90974828'
+redirect_uri           = 'http://13.219.228.150/callback'
 authorization_base_url = 'https://api.id.me/oauth/authorize'
 token_url              = 'https://api.id.me/oauth/token'
 attributes_url         = 'https://api.id.me/api/public/v3/attributes.json'
