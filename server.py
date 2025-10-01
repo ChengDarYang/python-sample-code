@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # Get this information by registering your app at https://developer.id.me
 client_id              = '28bf5c72de76f94a5fb1d9454e347d4e'
-client_secret          = 'Y3e9f2e9716dba6ec74a2e42e90974828'
-redirect_uri           = 'http://localhost:5000/callback'
+client_secret          = '3e9f2e9716dba6ec74a2e42e90974828'
+redirect_uri           = 'http://[IP]:5000/callback'
 authorization_base_url = 'https://api.id.me/oauth/authorize'
 token_url              = 'https://api.id.me/oauth/token'
 attributes_url         = 'https://api.id.me/api/public/v3/attributes.json'
@@ -68,6 +68,43 @@ def get_token():
         'token_type': 'Bearer',
         'expires_in': session.get('oauth_token', {}).get('expires_in')
     })
+
+@app.route("/userinfo", methods=["GET"])
+def get_userinfo():
+    # Call ID.me userinfo endpoint with access token
+    if 'access_token' not in session:
+        return jsonify({'error': 'No access token found. Please authenticate first.'}), 401
+    
+    access_token = session['access_token']
+    userinfo_url = 'https://api.id.me/api/public/v3/userinfo'
+    
+    try:
+        # Make request to userinfo endpoint with access token
+        import requests
+        headers = {
+            'Authorization': f'Bearer {access_token}',
+            'Content-Type': 'application/json'
+        }
+        
+        response = requests.get(userinfo_url, headers=headers)
+        
+        if response.status_code == 200:
+            userinfo_data = response.json()
+            # Store userinfo in session for later use
+            session['userinfo'] = userinfo_data
+            return jsonify(userinfo_data)
+        else:
+            return jsonify({
+                'error': 'Failed to fetch user info',
+                'status_code': response.status_code,
+                'message': response.text
+            }), response.status_code
+            
+    except Exception as e:
+        return jsonify({
+            'error': 'Error calling userinfo endpoint',
+            'message': str(e)
+        }), 500
 
 if __name__ == "__main__":
     # This allows us to use a plain HTTP callback
