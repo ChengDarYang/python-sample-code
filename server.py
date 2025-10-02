@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Get this information by registering your app at https://developer.id.me
 client_id              = '28bf5c72de76f94a5fb1d9454e347d4e'
 client_secret          = '3e9f2e9716dba6ec74a2e42e90974828'
-redirect_uri           = 'http://[IP]:5000/callback'
+redirect_uri           = 'http://IP:5000/callback'
 authorization_base_url = 'https://api.id.me/oauth/authorize'
 token_url              = 'https://api.id.me/oauth/token'
 attributes_url         = 'https://api.id.me/api/public/v3/attributes.json'

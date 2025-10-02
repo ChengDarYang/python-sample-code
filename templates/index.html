@@ -1,6 +1,105 @@
 <!doctype html>
-
-<body class="main">
-  <span id="idme-wallet-button" data-scope="login" data-client-id="28bf5c72de76f94a5fb1d9454e347d4e" data-redirect="http://IP:5000/callback" data-response="code"></span>
-  <script src="https://s3.amazonaws.com/idme/developer/idme-buttons/assets/js/idme-wallet-button.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNY Self-Service Password Reset</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .banner {
+            background-color: #ffd700;
+            color: #000;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 2px solid #000;
+        }
+        
+        .header {
+            background-color: #fff;
+            padding: 30px 20px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .suny-logo {
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;
+        }
+        
+        .suny-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #003366;
+            margin: 0;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        
+        .purpose-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        
+        .idme-container {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+        }
+        
+        #idme-wallet-button {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Yellow banner -->
+    <div class="banner">
+        Mock Demo
+    </div>
+    
+    <!-- SUNY Header -->
+    <div class="header">
+        <img src="{{ url_for('static', filename='suny-seal.png') }}" alt="SUNY Seal" class="suny-logo" style="border: 1px solid #ccc;">
+        <h1 class="suny-name">State University of New York</h1>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content">
+        <div class="purpose-text">
+            <h2>Self-Service Password Reset</h2>
+            <p>Welcome to SUNY's Self-Service Password Reset portal. This secure system allows you to reset your password quickly and safely.</p>
+            <p>To verify your identity and access the password reset functionality, we use <strong>ID.me</strong> as our trusted identity verification partner. ID.me provides secure, government-grade identity verification to ensure your account remains protected.</p>
+            <p>Click the button below to begin the identity verification process with ID.me.</p>
+        </div>
+        
+        <!-- ID.me Button Container -->
+        <div class="idme-container">
+            <span id="idme-wallet-button" data-scope="login" data-client-id="28bf5c72de76f94a5fb1d9454e347d4e" data-redirect="http://IP:5000/callback" data-response="code"></span>
+        </div>
+    </div>
+    
+    <script src="https://s3.amazonaws.com/idme/developer/idme-buttons/assets/js/idme-wallet-button.js"></script>
 </body>
+</html>
